@@ -9,16 +9,18 @@ import java.net.URLDecoder;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 
 import com.selenium_framworknew.common.ExcelReader;
 
+@Listeners(FrameworkListeners.class)
 public class AbstractSelenium {
 	
-	@BeforeTest
-	public  void callCreateWebDriverInstanceMethod() 
-	{
-		WebDriverFactory.createWebDriverInstance();
-	}
+//	@BeforeTest
+//	public  void callCreateWebDriverInstanceMethod() 
+//	{
+//		WebDriverFactory.createWebDriverInstance();
+//	}
 
 	@DataProvider(name="LoginData")
 	public String[][] getDataLogin() {
@@ -67,6 +69,7 @@ public String[][] getCSVData() {
 	
 	private static String getFilePath(Class<?> cls){
 		System.out.println("******** getFilePath for class "+cls.getName());
+		
 		String strSourceClassName = cls.getResource(cls.getSimpleName()+".class").getPath();
 		System.out.println("*************** resource path is "+strSourceClassName);
 		try {
